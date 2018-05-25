@@ -24,7 +24,7 @@ Make sure your site uses jQuery (works with any version 1.x - 3.x). Otherwise im
 
 
 # 2. Paste it anywhere
-within the <body> </body> tags
+within the &#x3C;body&#x3E; ... &#x3C;/body&#x3E; tags:
 
     <script type="text/javascript">
     jQuery(document).ready(function() {
