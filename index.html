@@ -26,12 +26,20 @@
      * @link https://wayoutofline.net
      * @license http://opensource.org/licenses/MIT MIT License
      */
+    
     jQuery(document).ready(function() {
       // Customize your texts here:
-      var cCText = "We use cookies to give you the best experience on our website. If you continue without changing your settings, we will assume that you are happy to receive all cookies on this website.",
-        cCBtnText = "OK",
-        cCBtnText2 = "Privacy Policy",
-        cCLink = "/privacy-policy/";
+      if(jQuery('html').attr('lang')=='en-US') {
+        var cCText = "We use cookies to give you the best experience on our website. If you continue without changing your settings, we will assume that you are happy to receive all cookies on this website.",
+          cCBtnText = "OK",
+          cCBtnText2 = "Privacy Policy",
+          cCLink = "/en/privacy-policy";
+      } else {
+        var cCText = "Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. Wenn Sie fortfahren, ohne Ihre Einstellungen zu ändern, gehen wir davon aus, dass Sie alle Cookies auf dieser Website akzeptieren.",
+          cCBtnText = "OK",
+          cCBtnText2 = "Datenschutzhinweise",
+          cCLink = "/de/datenschutz";
+      }
       // Style overides to change colors. Leave blank for default:
       var cCBGColor = "#4e4e4e",
         cCTextColor = "#fff",
@@ -42,18 +50,10 @@
       /**
        * Stop editing ################################################/
        */
-      // Cookie helper script. Sorry folks, I don't remember where I found it...
       window.COOKIE={create:function(e,t,n){if(n){var r=new Date;r.setTime(r.getTime()+24*n*60*60*1e3);var i="; expires="+r.toGMTString()}else i="";document.cookie=e+"="+t+i+"; path=/"},read:function(e){for(var t=e+"=",n=document.cookie.split(";"),r=0;r<n.length;r++){for(var i=n[r];" "==i.charAt(0);)i=i.substring(1,i.length);if(0==i.indexOf(t))return i.substring(t.length,i.length)}},erase:function(e){COOKIE.create(e,"",-1)}}
-      // Cookie ConsentR starts here:
-      if(!window.COOKIE.read('CConsentR')) {
-        jQuery('head').append('<style>#cookie-consentr{position:fixed;bottom:0;left:0;width:100%;text-align:center;background:#4e4e4e;color:#fff;padding:10px 0;font-size:14px;z-index:9999}#cookie-consentr p, #cookie-consentr p a{color:#fff}.c-c-btn{padding:3px 10px;border-radius:10px;cursor:pointer;display:inline-block;}.c-c-btn:hover{opacity: 0.8}#c-c-ok{background:green}#c-c-link{background:green}</style>');
-        jQuery('body').append('<div id="cookie-consentr" style="background:'+cCBGColor+'"><p style="color:'+cCTextColor+'">'+cCText+' <a class="c-c-btn" id="c-c-ok" style="background:'+cCBtn1Color+';color:'+cCBtn1TextColor+'">'+cCBtnText+'</a> <a href="'+cCLink+'" target="_blank" class="c-c-btn" id="c-c-link" style="background:'+cCBtn2Color+';color:'+cCBtn2TextColor+'">'+cCBtnText2+'</a></p></div>');
-        jQuery('#c-c-ok').bind('click', function(e){
-          e.stopPropagation(); e.preventDefault(); window.COOKIE.create('CConsentR', true, 1095); //3 years
-          jQuery('#cookie-consentr').remove();
-        });
-      }
+      window.COOKIE.read("CConsentR")||(jQuery("head").append("<style>#cookie-consentr{position:fixed;bottom:0;left:0;width:100%;text-align:center;background:#4e4e4e;color:#fff;padding:10px 0;font-size:14px;z-index:9999}#cookie-consentr p, #cookie-consentr p a{color:#fff}.c-c-btn{padding:3px 10px;border-radius:10px;cursor:pointer;display:inline-block;}.c-c-btn:hover{opacity: 0.8}#c-c-ok{background:green}#c-c-link{background:green}</style>"),jQuery("body").append('<div id="cookie-consentr" style="background:'+cCBGColor+'"><p style="color:'+cCTextColor+'">'+cCText+' <a class="c-c-btn" id="c-c-ok" style="background:'+cCBtn1Color+";color:"+cCBtn1TextColor+'">'+cCBtnText+'</a> <a href="'+cCLink+'" target="_blank" class="c-c-btn" id="c-c-link" style="background:'+cCBtn2Color+";color:"+cCBtn2TextColor+'">'+cCBtnText2+"</a></p></div>"),jQuery("#c-c-ok").bind("click",function(o){o.stopPropagation(),o.preventDefault(),window.COOKIE.create("CConsentR",!0,1095),jQuery("#cookie-consentr").remove()}))
     });
+    
     </script>
   </body>
 </html>
